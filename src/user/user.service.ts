@@ -21,22 +21,27 @@ export class UserService {
   }
 
   async findOne(id: number) {
-    const user = await this.userRepository.findOne({
+    return await this.userRepository.findOne({
       where: { id },
     });
+  }
 
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-
-    return user;
+  async findOneByUsername(username: string) {
+    return await this.userRepository.findOne({
+      where: { username },
+    });
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    const user = await this.findOne(id);
-    Object.assign(user, updateUserDto);
+    const existingUser = await this.findOne(id);
 
-    return await this.userRepository.save(user);
+    if (!existingUser) {
+      throw new NotFoundException('user not found');
+    }
+
+    Object.assign(existingUser, updateUserDto);
+
+    return await this.userRepository.save(existingUser);
   }
 
   async remove(id: number) {

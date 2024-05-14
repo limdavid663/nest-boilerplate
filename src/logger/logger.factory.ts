@@ -7,7 +7,7 @@ import {
 export const LoggerFactory = (appName: string) => {
   let consoleFormat: any;
 
-  const DEBUG = process.env.DEBUG;
+  const DEBUG = process.env.DEBUG === 'true';
   const USE_JSON_LOGGER = process.env.USE_JSON_LOGGER;
 
   if (USE_JSON_LOGGER === 'true') {

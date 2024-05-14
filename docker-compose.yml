@@ -1,22 +1,22 @@
 version: '3.9'
 services:
-  app:
-    image: boilerplate:latest
-    container_name: boilerplate-app
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: development
-    ports:
-      - '3000:3000'
-    depends_on:
-      - redis
-      - db
-    volumes:
-      - type: bind
-        source: ./src
-        target: /usr/src/app/src
-    entrypoint: ["pnpm", "run", "start:dev"]
+  #  app:
+  #    image: boilerplate:latest
+  #    container_name: boilerplate-app
+  #    build:
+  #      context: .
+  #      dockerfile: Dockerfile
+  #      target: development
+  #    ports:
+  #      - '3000:3000'
+  #    depends_on:
+  #      - redis
+  #      - db
+  #    volumes:
+  #      - type: bind
+  #        source: ./src
+  #        target: /usr/src/app/src
+  #    entrypoint: ["pnpm", "run", "start:dev"]
   db:
     image: postgres
     container_name: boilerplate-postgres
