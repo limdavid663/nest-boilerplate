@@ -23,7 +23,9 @@ export class UserService {
   async findOne(id: number) {
     return await this.userRepository.findOne({
       where: { id },
-      relations: { roles: true },
+      relations: {
+        roles: { permissions: true },
+      },
     });
   }
 
