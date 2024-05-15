@@ -4,6 +4,7 @@ import { RegisterDto } from './dto/register.dto';
 import { Public } from './decorator/public.decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from '../user/entities/user.entity';
+import { CurrentUser } from '../common/decorator/current-user.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -13,7 +14,7 @@ export class AuthController {
   @UseGuards(AuthGuard('local'))
   @Post('login')
   @HttpCode(200)
-  async login(@Body() user: User) {
+  async login(@CurrentUser() user: User) {
     return this.authService.login(user);
   }
 

@@ -32,6 +32,9 @@ export class UserService {
   async findOneByUsername(username: string) {
     return await this.userRepository.findOne({
       where: { username },
+      relations: {
+        roles: { permissions: true },
+      },
     });
   }
 

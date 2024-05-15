@@ -13,7 +13,9 @@ import { ConfigService } from '@nestjs/config';
         username: configService.getOrThrow('DB_USERNAME'),
         password: configService.getOrThrow('DB_PASSWORD'),
         synchronize: configService.getOrThrow('DB_SYNCHRONIZE') === 'true',
-        autoLoadEntities: true,
+        autoLoadEntities:
+          configService.getOrThrow('DB_AUTOLOAD_ENTITIES') === 'true',
+        logging: configService.getOrThrow('DB_LOGGING') === 'true',
       }),
       inject: [ConfigService],
     }),
