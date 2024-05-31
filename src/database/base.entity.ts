@@ -18,7 +18,7 @@ export class BaseEntity<T> {
   })
   public updated_at: Date;
 
-  constructor(entity: Partial<T>) {
+  constructor(entity?: Partial<T>) {
     Object.assign(this, entity);
   }
 }

@@ -17,7 +17,11 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "db:create": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs db:create  -d src/database/data-source.ts",
+    "db:seed": "npm run build && ts-node ./node_modules/typeorm-extension/bin/cli.cjs seed:run -d ./src/database/data-source.ts --name src/database/seeds/main.seeder.ts",
+    "db:drop": "ts-node ./node_modules/typeorm-extension/bin/cli.cjs db:drop  -d src/database/data-source.ts",
+    "db:reset": "npm run db:drop && npm run db:create && npm run db:seed"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -25,8 +29,10 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/microservices": "^10.3.8",
     "@nestjs/platform-express": "^10.0.0",
+    "dotenv": "^16.4.5",
     "reflect-metadata": "^0.2.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typeorm-extension": "^3.5.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
